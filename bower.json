@@ -2,6 +2,7 @@
   "name": "mrm-cent",
   "version": "0.0.0",
   "homepage": "https://github.com/mightymoose/mrm-cent",
+  "description": "Some angular resources to listen on centrifuge websockets.",
   "authors": [
     "Ryan Morris <mryan.morris@gmail.com>"
   ],
