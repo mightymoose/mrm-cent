@@ -9,12 +9,12 @@ module.exports = function(config) {
 
 
     // frameworks to use
-    frameworks: ['mocha', 'chai'],
+    frameworks: ['mocha', 'sinon-chai'],
 
     plugins: [
       'karma-coverage',
       'karma-mocha',
-      'karma-chai',
+      'karma-sinon-chai',
       'karma-phantomjs-launcher'
     ],
 
