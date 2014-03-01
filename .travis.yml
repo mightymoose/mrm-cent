@@ -4,3 +4,5 @@ before_script:
   - bower install
 node_js:
   - "0.11"
+after_script:
+  - cat ./coverage/*/lcov.info | ./node_modules/coveralls/bin/coveralls.js
