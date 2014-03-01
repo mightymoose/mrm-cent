@@ -1,14 +1,14 @@
 describe("cent", function(){
-  var cent;
+  var Cent;
 
   beforeEach(module('mrmCent'));
 
-  beforeEach(inject(function(_cent_){
-    cent = _cent_;
+  beforeEach(inject(function(_Cent_){
+    Cent = _Cent_;
   }));
 
   it("exists", function(){
-    expect(cent).to.be.ok;
+    expect(Cent).to.be.ok;
   });
 
 });

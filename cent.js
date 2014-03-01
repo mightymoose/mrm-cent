@@ -14,4 +14,4 @@ angular.module('mrmCent', []).provider('centConfig', function(){
       user: user
     };
   };
-}).value('cent', {});
+}).value('Cent', {});
