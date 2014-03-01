@@ -1,0 +1,21 @@
+{
+  "name": "mrm-cent",
+  "version": "0.0.0",
+  "description": "Some angular resources to listen on centrifuge websockets.",
+  "main": "index.js",
+  "devDependencies": {
+    "gulp-karma": "*",
+    "karma-mocha": "*",
+    "karma-chai": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mightymoose/mrm-cent"
+  },
+  "author": "Ryan Morris",
+  "license": "BSD3",
+  "bugs": {
+    "url": "https://github.com/mightymoose/mrm-cent/issues"
+  },
+  "homepage": "https://github.com/mightymoose/mrm-cent"
+}
