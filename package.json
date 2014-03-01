@@ -4,6 +4,8 @@
   "description": "Some angular resources to listen on centrifuge websockets.",
   "main": "index.js",
   "devDependencies": {
+    "karma": "*",
+    "gulp": "*",
     "gulp-karma": "*",
     "karma-mocha": "*",
     "karma-chai": "*"
@@ -16,6 +18,9 @@
   "license": "BSD3",
   "bugs": {
     "url": "https://github.com/mightymoose/mrm-cent/issues"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/gulp test"
   },
   "homepage": "https://github.com/mightymoose/mrm-cent"
 }
