@@ -11,6 +11,17 @@ module.exports = function(config) {
     // frameworks to use
     frameworks: ['mocha', 'chai'],
 
+    plugins: [
+      'karma-coverage',
+      'karma-mocha',
+      'karma-chai',
+      'karma-phantomjs-launcher'
+    ],
+
+    preprocessors: {
+      "cent.js": "coverage"
+    },
+
 
     // list of files / patterns to load in the browser
     files: [
@@ -26,7 +37,11 @@ module.exports = function(config) {
 
     // test results reporter to use
     // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
-    reporters: ['progress'],
+    reporters: ['progress', 'coverage'],
+    coverageReporter: {
+      dir: 'coverage/',
+      type: 'lcovonly'
+    },
 
 
     // web server port

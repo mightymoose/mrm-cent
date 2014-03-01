@@ -8,7 +8,9 @@
     "gulp": "*",
     "gulp-karma": "*",
     "karma-mocha": "*",
-    "karma-chai": "*"
+    "karma-chai": "*",
+    "karma-coverage": "*",
+    "coveralls": "*"
   },
   "repository": {
     "type": "git",
