@@ -1,0 +1,21 @@
+{
+  "name": "mrm-cent",
+  "version": "0.0.0",
+  "homepage": "https://github.com/mightymoose/mrm-cent",
+  "authors": [
+    "Ryan Morris <mryan.morris@gmail.com>"
+  ],
+  "license": "BSD3",
+  "devDependencies": {
+    "angular": "1.2.0-rc.3",
+    "angular-mocks": "1.2.0-rc.3"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ]
+}

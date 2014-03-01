@@ -12,7 +12,7 @@
     "type": "git",
     "url": "https://github.com/mightymoose/mrm-cent"
   },
-  "author": "Ryan Morris",
+  "author": "Ryan Morris <mryan.morris@gmail.com>",
   "license": "BSD3",
   "bugs": {
     "url": "https://github.com/mightymoose/mrm-cent/issues"
