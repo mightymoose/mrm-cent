@@ -1,6 +1,6 @@
 {
   "name": "mrm-cent",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "homepage": "https://github.com/mightymoose/mrm-cent",
   "description": "Some angular resources to listen on centrifuge websockets.",
   "authors": [
