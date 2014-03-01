@@ -14,7 +14,17 @@ angular.module('mrmCent', []).provider('centConfig', function(){
       user: user
     };
   };
-}).factory('Cent', function(CentBackend, centConfig){
+}).factory('Cent', function(CentBackend, centConfig, $q, $rootScope){
   CentBackend.configure(centConfig);
-  return {};
+  return {
+    subscribe: function(channel){
+      var deferred = $q.defer();
+      CentBackend.subscribe(channel, function(msg){
+        $rootScope.$apply(function(){
+          deferred.notify(msg);
+        });
+      });
+      return deferred.promise;
+    }
+  };
 });
