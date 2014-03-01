@@ -14,4 +14,7 @@ angular.module('mrmCent', []).provider('centConfig', function(){
       user: user
     };
   };
-}).value('Cent', {});
+}).factory('Cent', function(CentBackend, centConfig){
+  CentBackend.configure(centConfig);
+  return {};
+});

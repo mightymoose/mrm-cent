@@ -14,7 +14,7 @@ describe("centConfig", function(){
   describe("configuration", function(){
     var centConfig;
 
-    beforeEach(module(function(_centConfigProvider_){
+    beforeEach(module(function(){
       centConfigProvider.url('url');
       centConfigProvider.token('token');
       centConfigProvider.project('project');
