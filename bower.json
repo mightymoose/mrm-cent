@@ -1,5 +1,6 @@
 {
   "name": "mrm-cent",
+  "main": "./cent.js",
   "version": "0.0.2",
   "homepage": "https://github.com/mightymoose/mrm-cent",
   "description": "Some angular resources to listen on centrifuge websockets.",
@@ -7,6 +8,9 @@
     "Ryan Morris <mryan.morris@gmail.com>"
   ],
   "license": "BSD3",
+  "dependencies": {
+    "angular": "~1.2"
+  },
   "devDependencies": {
     "angular": "1.2.0-rc.3",
     "angular-mocks": "1.2.0-rc.3"
