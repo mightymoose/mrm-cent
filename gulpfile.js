@@ -4,6 +4,7 @@ var karma = require('gulp-karma');
 var testFiles = [
   'lib/angular/angular.js',
   'lib/angular-mocks/angular-mocks.js',
+  'centrifuge.js',
   'cent.js',
   'spec/*.test.js'
 ];

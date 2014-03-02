@@ -14,6 +14,8 @@ angular.module('mrmCent', []).provider('centConfig', function(){
       user: user
     };
   };
+}).factory('CentBackend', function(){
+  return new Centrifuge();
 }).factory('Cent', function(CentBackend, centConfig, $q, $rootScope){
   var connectDeferred = $q.defer();
   var connect = connectDeferred.promise;
