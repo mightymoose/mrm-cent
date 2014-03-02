@@ -15,13 +15,25 @@ angular.module('mrmCent', []).provider('centConfig', function(){
     };
   };
 }).factory('Cent', function(CentBackend, centConfig, $q, $rootScope){
+  var connectDeferred = $q.defer();
+  var connect = connectDeferred.promise;
   CentBackend.configure(centConfig);
+  CentBackend.connect();
+
+  CentBackend.on('connect', function(){
+    $rootScope.$apply(function(){
+      connectDeferred.resolve();
+    });
+  });
+
   return {
     subscribe: function(channel){
       var deferred = $q.defer();
-      CentBackend.subscribe(channel, function(msg){
-        $rootScope.$apply(function(){
-          deferred.notify(msg);
+      connect.then(function(){
+        CentBackend.subscribe(channel, function(msg){
+          $rootScope.$apply(function(){
+            deferred.notify(msg);
+          });
         });
       });
       return deferred.promise;

@@ -5,13 +5,22 @@ describe("Cent", function(){
 
   beforeEach(module(function($provide){
     CentBackend = {};
-    CentBackend.configure = sinon.spy()
-    CentBackend.subscribe = sinon.spy()
+    CentBackend.configure = sinon.spy();
+    CentBackend.subscribe = sinon.spy();
+    CentBackend.connect = sinon.stub();
+    CentBackend.on = sinon.stub();
+
+    CentBackend.triggerConnect = function(){
+      var lastArgs = CentBackend.on.lastCall.args;
+      var connectCallback = lastArgs[1];
+      connectCallback();
+    };
+
     CentBackend.triggerMessage = function(msg){
       var lastArgs = CentBackend.subscribe.lastCall.args;
       var messageCallback = lastArgs[1];
       messageCallback(msg);
-    }
+    };
     centConfig = {};
     $provide.value('CentBackend', CentBackend);
     $provide.value('centConfig', centConfig);
@@ -31,17 +40,23 @@ describe("Cent", function(){
     expect(CentBackend.configure).to.have.been.calledWith(centConfig);
   });
 
+  it("calls CentBackend.connect", function(){
+    expect(CentBackend.connect).to.have.been.calledOnce;
+  });
+
   describe("Cent.subscribe", function(){
     it("exists", function(){
       expect(Cent.subscribe).to.be.ok;
     });
 
-    it("calls CentBackend.subscribe", function(){
+    it("calls CentBackend.subscribe after connecting", function(){
       Cent.subscribe("channel");
+      expect(CentBackend.subscribe).not.to.have.been.called;
+      CentBackend.triggerConnect();
+      expect(CentBackend.subscribe).to.have.been.calledOnce;
       var lastArgs = CentBackend.subscribe.lastCall.args;
       var channel = lastArgs[0];
       var callback = lastArgs[1];
-      expect(CentBackend.subscribe).to.have.been.calledOnce;
       expect(channel).to.eq("channel");
       expect(callback).to.be.a("function");
     });
@@ -57,6 +72,7 @@ describe("Cent", function(){
       var res;
       beforeEach(function(){
         res = Cent.subscribe('channel');
+        CentBackend.triggerConnect();
       });
 
       describe("notification callback", function(){
