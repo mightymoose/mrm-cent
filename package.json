@@ -1,6 +1,6 @@
 {
   "name": "mrm-cent",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Some angular resources to listen on centrifuge websockets.",
   "main": "index.js",
   "devDependencies": {
