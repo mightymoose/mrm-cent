@@ -32,7 +32,7 @@ angular.module('mrmCent', []).provider('centConfig', function(){
     subscribe: function(channel){
       var deferred = $q.defer();
       connect.then(function(){
-        CentBackend.subscribe(channel, function(msg){
+        deferred.promise.$subscription = CentBackend.subscribe(channel, function(msg){
           $rootScope.$apply(function(){
             deferred.notify(msg);
           });

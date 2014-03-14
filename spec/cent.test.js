@@ -1,12 +1,13 @@
 describe("Cent", function(){
-  var Cent, CentBackend, centConfig;
+  var Cent, CentBackend, centConfig, subscription;
 
   beforeEach(module('mrmCent'));
 
   beforeEach(module(function($provide){
+    subscription = {};
     CentBackend = {};
     CentBackend.configure = sinon.spy();
-    CentBackend.subscribe = sinon.spy();
+    CentBackend.subscribe = sinon.stub().returns(subscription);
     CentBackend.connect = sinon.stub();
     CentBackend.on = sinon.stub();
 
@@ -81,6 +82,11 @@ describe("Cent", function(){
         beforeEach(function(){
           callback = sinon.spy();
           res.then(angular.noop, angular.noop, callback);
+        });
+
+        it("adds the subscription to the promise", function(){
+          expect(res.$subscription).to.eq(subscription);
+          
         });
 
         it("receives messages", function(){
