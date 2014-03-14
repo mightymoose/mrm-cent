@@ -4,7 +4,8 @@
   "description": "Some angular resources to listen on centrifuge websockets.",
   "main": "index.js",
   "devDependencies": {
-    "karma": "*",
+    "karma": "0.10.0",
+    "karma-coffee-preprocessor": "~0.1.3",
     "gulp": "*",
     "gulp-karma": "*",
     "karma-mocha": "*",
