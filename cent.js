@@ -31,12 +31,28 @@ angular.module('mrmCent', []).provider('centConfig', function(){
   return {
     subscribe: function(channel){
       var deferred = $q.defer();
+      var subscriptionDeferred = $q.defer();
+      
+      deferred.promise.publish = function(msg){
+        subscriptionDeferred.promise.then(function(){
+          deferred.promise.$subscription.publish(msg);
+        });
+      };
+
       connect.then(function(){
         deferred.promise.$subscription = CentBackend.subscribe(channel, function(msg){
           $rootScope.$apply(function(){
             deferred.notify(msg);
           });
         });
+
+        deferred.promise.$subscription.on('ready', function(){
+          $rootScope.$apply(function(){
+            subscriptionDeferred.resolve();   
+          });
+
+        });
+
       });
       return deferred.promise;
     }

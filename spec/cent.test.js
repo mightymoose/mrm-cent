@@ -1,10 +1,14 @@
 describe("Cent", function(){
-  var Cent, CentBackend, centConfig, subscription;
+  var Cent, CentBackend, centConfig, subscription, subscriptionHooks;
 
   beforeEach(module('mrmCent'));
 
   beforeEach(module(function($provide){
     subscription = {};
+    subscription.publish = sinon.spy();
+    subscriptionHooks = {};
+    subscription.on = function(hook, f){ subscriptionHooks[hook] = f; }
+
     CentBackend = {};
     CentBackend.configure = sinon.spy();
     CentBackend.subscribe = sinon.stub().returns(subscription);
@@ -84,9 +88,22 @@ describe("Cent", function(){
           res.then(angular.noop, angular.noop, callback);
         });
 
+        describe("publish",function(){
+          it("exists on the subscription result", function(){
+            expect(res).to.have.property('publish');
+          });
+
+          it("publishes messages after a successful subscription", function(){
+            res.publish('hi');
+            expect(subscription.publish).not.to.have.been.called;
+            subscriptionHooks['ready']();
+            expect(subscription.publish).to.have.been.called;
+          });
+
+        });
+
         it("adds the subscription to the promise", function(){
           expect(res.$subscription).to.eq(subscription);
-          
         });
 
         it("receives messages", function(){
