@@ -19,11 +19,16 @@ describe("centConfig", function(){
       centConfigProvider.token('token');
       centConfigProvider.project('project');
       centConfigProvider.user('user');
+      centConfigProvider.timestamp('timestamp');
     }));
 
     beforeEach(inject(function(_centConfig_){
       centConfig = _centConfig_;
     }));
+
+    it("sets the timestamp", function(){
+      expect(centConfig.timestamp).to.eq('timestamp');
+    });
 
     it("sets the url", function(){
       expect(centConfig.url).to.eq('url');
