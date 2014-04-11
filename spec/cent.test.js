@@ -31,22 +31,41 @@ describe("Cent", function(){
     $provide.value('centConfig', centConfig);
   }));
 
-  beforeEach(inject(function(_Cent_, _centConfig_){
-    Cent = _Cent_;
-    centConfig = _centConfig_;
-  }));
+  describe("with configuration provided", function() {
 
-  it("exists", function(){
-    expect(Cent).to.be.ok;
+    beforeEach(inject(function(_centConfig_){
+      centConfig = _centConfig_;
+      centConfig.url = 'url'
+      centConfig.token = 'token'
+      centConfig.project = 'project'
+      centConfig.user = 'user'
+      centConfig.timestamp = 'timestamp'
+    }));
+
+    beforeEach(inject(function(_Cent_){
+      Cent = _Cent_;
+    }));
+
+    it("configures centrifuge", function(){
+      expect(CentBackend.configure).to.have.been.calledOnce;
+      expect(CentBackend.configure).to.have.been.calledWith(centConfig);
+    });
+
+    it("calls CentBackend.connect if a configuration has been provided", function(){
+      expect(CentBackend.connect).to.have.been.calledOnce;
+    });
   });
 
-  it("configures centrifuge", function(){
-    expect(CentBackend.configure).to.have.been.calledOnce;
-    expect(CentBackend.configure).to.have.been.calledWith(centConfig);
-  });
+  describe("without a configuration", function(){
 
-  it("calls CentBackend.connect", function(){
-    expect(CentBackend.connect).to.have.been.calledOnce;
+    beforeEach(inject(function(_Cent_){
+      Cent = _Cent_;
+    }));
+
+    it("doesn't call CentBackend.connect if a configuration has  notbeen provided", function(){
+      expect(CentBackend.connect).not.to.have.been.called;
+    });
+
   });
 
   describe("Cent.subscribe", function(){

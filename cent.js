@@ -21,8 +21,11 @@ angular.module('mrmCent', []).provider('centConfig', function(){
 }).factory('Cent', function(CentBackend, centConfig, $q, $rootScope){
   var connectDeferred = $q.defer();
   var connect = connectDeferred.promise;
-  CentBackend.configure(centConfig);
-  CentBackend.connect();
+
+  if(centConfig.url && centConfig.token && centConfig.project && centConfig.user && centConfig.timestamp){
+    CentBackend.configure(centConfig);
+    CentBackend.connect();
+  }
 
   CentBackend.on('connect', function(){
     $rootScope.$apply(function(){
